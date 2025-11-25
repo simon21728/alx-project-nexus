@@ -16,7 +16,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.AllowAny]
 
 # 📝 Register new user
 class RegisterView(generics.CreateAPIView):

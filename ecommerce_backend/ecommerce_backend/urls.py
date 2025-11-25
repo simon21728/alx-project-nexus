@@ -7,7 +7,7 @@ from ecommerce_backend.schema import schema
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
-    path('api/users/', include('users.urls')),
+    path('api/', include('users.urls')),
     path('api/', include('products.urls')),
     path('api/', include('orders.urls')),
     path('api/v1/', include('orders.urls')),
