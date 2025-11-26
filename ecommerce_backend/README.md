@@ -73,7 +73,7 @@ Create a centralized GitHub repository to:
 ##  ProDev Tip!
 
 >  Use the **first week** to:
-> - Announce my project focus.  
+> - Announce your project focus.  
 > - Identify **Frontend learners** for collaboration.  
 > - Set communication expectations early.
 

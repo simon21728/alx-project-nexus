@@ -1,28 +1,28 @@
 pipeline {
-    agent any
-
+    agent none
     stages {
-        stage('Clone') {
-            steps {
-                checkout scm
+        stage('Build Docker Image') {
+            agent {
+                docker {
+                    image 'docker:24-dind'
+                    args '--privileged'
+                }
             }
-        }
-
-        stage('Backend - Build Docker Image') {
             steps {
+                sh 'docker info'
                 sh 'docker build -t ecommerce-backend ./ecommerce_backend'
             }
         }
-
-        stage('Backend - Run Tests') {
+        stage('Run Tests') {
+            agent any
             steps {
-                sh 'docker run --rm ecommerce-backend python manage.py test'
+                sh './run_tests.sh'
             }
         }
-
-        stage('Deploy using docker-compose') {
+        stage('Deploy') {
+            agent any
             steps {
-                sh 'docker compose -f docker-compose.yml up -d --build'
+                sh 'docker-compose up -d'
             }
         }
     }
