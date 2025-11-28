@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import pymysql
+pymysql.install_as_MySQLdb()
 from pathlib import Path
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -79,14 +81,15 @@ WSGI_APPLICATION = 'ecommerce_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_postgres',          # your database name
-        'USER': 'postgres',           # your postgres user
-        'PASSWORD': 'Sew76@bayu21',   # your postgres password
-        'HOST': '127.0.0.1',          # VERY IMPORTANT!
-        'PORT': '5432',               # default PostgreSQL port
+        'ENGINE': 'django.db.backends.mysql',  # change to MySQL
+        'NAME': 'my_mysql',                    # your MySQL database name
+        'USER': 'root',                        # your MySQL username
+        'PASSWORD': 'Sew76@bayu21',           # your MySQL password
+        'HOST': '127.0.0.1',                   # or 'localhost'
+        'PORT': '3306',                        # default MySQL port
     }
 }
+
 
 
 # Password validation
