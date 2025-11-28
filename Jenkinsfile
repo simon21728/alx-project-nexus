@@ -1,27 +1,26 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Build Docker Image') {
-            agent {
-                docker {
-                    image 'docker:24-dind'
-                    args '--privileged'
-                }
-            }
             steps {
+                // Show Docker info
                 sh 'docker info'
+
+                // Build the Docker image
                 sh 'docker build -t ecommerce-backend ./ecommerce_backend'
             }
         }
+
         stage('Run Tests') {
-            agent any
             steps {
+                // Run your tests script
                 sh './run_tests.sh'
             }
         }
+
         stage('Deploy') {
-            agent any
             steps {
+                // Start containers with docker-compose
                 sh 'docker-compose up -d'
             }
         }
